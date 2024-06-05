@@ -1,0 +1,6 @@
+spring:
+  datasource:
+    jndi-name: jdbc/rrr
+
+logging:
+  config: classpath:logback-dev.xml

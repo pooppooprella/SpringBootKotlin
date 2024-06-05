@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <th:block th:fragment="configFragment">
+        <link rel="shortcut icon" th:href="@{/images/favicon.ico}"/>
+
+        <!-- common script -->
+        <script th:src="@{/js/jquery-3.6.0.min.js}"></script>
+        <script th:src="@{/js/jquery-ui.js}"></script>
+        <script th:src="@{/js/jquery-twbsPagination.min.js}"></script>
+        <script th:src="@{/js/common-ui.js}"></script>
+        <script th:src="@{/js/common.js}"></script>
+        <script th:src="@{/js/chart.js}"></script>
+
+        <!-- content page css fragment -->
+        <th:block layout:fragment="css"></th:block>
+
+        <!-- content page script fragment-->
+        <th:block layout:fragment="script"></th:block>
+    </th:block>
+
+</html>

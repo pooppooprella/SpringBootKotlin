@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" >
+
+	<header th:fragment="headerFragment" id="header">
+    <script type="text/javascript">
+        var mSessionTime = 0; // 세션 시간
+        var mTimerId;         // 세션 타이머 아이디
+
+        $(function() {
+            // 현재 페이지 체크
+            fnCheckCurrentPage();
+
+            // 세션 시간 설정
+            fnInitSessionTimer();
+        });
+
+        // 현재 페이지 체크
+        function fnCheckCurrentPage() {
+            var currentPageUrl = window.location.href;
+
+            $("a[data-page]").each(function() {
+                var linkUrl = $(this).attr("href");
+                var absoluteLinkUrl = new URL(linkUrl, currentPageUrl).href;
+
+                if (currentPageUrl === absoluteLinkUrl) {
+                    $(this).addClass("current-page");
+                }
+            });
+        }
+
+        // 세션 시간 설정
+        function fnInitSessionTimer() {
+            $.ajax({
+                url: "/session/get-remain-time",
+                method: "GET",
+                success: function(response) {
+                    mSessionTime = response;
+
+                    if (mTimerId) {
+                        clearInterval(mTimerId);
+                    }
+
+                    mTimerId = setInterval(function () {
+                        var minute = Math.floor(mSessionTime / 60);
+                        var second = mSessionTime % 60;
+
+                        document.getElementById('sessionTimer').textContent = `${minute}:${second < 10 ? '0' : ''}${second}`;
+                        mSessionTime--;
+
+                        // 세션 만료
+                        if (mSessionTime < 0) {
+                            clearInterval(mTimerId);
+
+                            alert("세션이 만료되었습니다. 다시 로그인해 주세요.");
+                            location.href="/login"
+                        }
+                    }, 1000);
+                },
+            });
+        }
+
+        // 세선 시간 재설정
+        function fnResetSessionTimer() {
+            $.ajax({
+                url: "/session/reset-remain-time",
+                method: "GET",
+                success: function(response) {
+                    mSessionTime = response;
+
+                    if (mTimerId) {
+                        clearInterval(mTimerId);
+                    }
+
+                    mTimerId = setInterval(function () {
+                        var minute = Math.floor(mSessionTime / 60);
+                        var second = mSessionTime % 60;
+
+                        document.getElementById('sessionTimer').textContent = `${minute}:${second < 10 ? '0' : ''}${second}`;
+                        mSessionTime--;
+
+                        // 세션 만료
+                        if (mSessionTime < 0) {
+                            clearInterval(mTimerId);
+
+                            alert("세션이 만료되었습니다. 다시 로그인해 주세요.");
+                            location.href="/login"
+                        }
+                    }, 1000);
+                },
+            });
+        }
+
+        function fnLogout(){
+            $.ajax({
+                url: "/reqLogoutLog",
+                method: "POST",
+                success: function(response) {
+
+                },
+            });
+            location.href="/logout";
+        }
+
+    </script>
+
+    <!-- s: lnb menu -->
+    <div class="menu">
+        <div class="menu-inner">
+            <div class="lnb-header">
+                <a href="/admin/account-system" target="_self">
+                    <img th:src="@{/images/svg/ico_add.svg}" alt="CJ대한통운" class="logo">
+                </a>
+
+                <a href="/admin/account-general_detail" target="_self" >
+                    <img th:src="@{/images/svg/ico_add.svg}" alt="CJ대한통운" class="logo">
+                </a>
+            </div>
+
+            <ul class="lnb-menulist">
+                <!-- 관리자 관리 -->
+                <li class="lnb-menulist-item">
+                    <a href="/admin/account-system" target="_self">
+                        <i class="icon"></i><strong>관리자 관리</strong></a>
+
+                    <a href="/admin/account-general_detail" target="_self">
+                        <i class="icon"></i><strong>관리자 관리</strong></a>
+
+                    <!-- 현재 페이지에 class 추가 : current-page -->
+                    <ul th:if="${'ADM01' == 'ADM01'}">
+                        <li><a href="/admin/account-system" data-page="account-super">관리자 계정 관리</a></li>
+                        <li><a href="/admin/statistics" data-page="account-super">통계 관리</a></li>
+                        <li><a href="/admin/access-log" data-page="access-log">접속 이력 관리</a></li>
+                    </ul>
+
+                    <!-- 현재 페이지에 class 추가 : current-page -->
+                    <ul th:if="${'ADM02' == 'ADM02'}">
+                        <li><a href="/admin/account-general_detail" data-page="account-super">관리자 계정 관리</a></li>
+                    </ul>
+                </li>
+                <!-- //관리자 관리 -->
+
+                <!-- 내방객 예약 -->
+                <li class="lnb-menulist-item">
+                    <a href="/visitor/rez-info" target="_self"><i class="icon booking"></i><strong>내방객 예약 정보</strong></a>
+                </li>
+                <!-- //내방객 예약 -->
+            </ul>
+        </div>
+    </div>
+    <!-- e: lnb menu -->
+
+    <!-- s: header-util -->
+    <div class="header-util">
+
+        <!-- header-user -->
+        <div class="header-user">
+            <span class="author" th:if="${'ADM01' == 'ADM01'}">팀장</span>
+            <span class="author" th:if="${'ADM02' == 'ADM02'}">팀원</span>
+            <p><span class="header-user-name" >홍길동</span>님</p>
+        </div>
+
+        <!-- header-logout -->
+        <div class="header-logout">
+            <div class="session-timeout-container">
+                <span class="timer" id="sessionTimer">30:00</span>
+                <button id="extendSession" class="button button-session" onclick="fnResetSessionTimer()">로그인 연장</button>
+            </div>
+            <button type="button" class="button button-logout" onclick="fnLogout()">
+                <i class="ico ico-logout"></i>
+                <span>로그아웃</span>
+            </button>
+        </div>
+
+    </div>
+    <!-- e: header-util -->
+
+</header>
+
+</html>

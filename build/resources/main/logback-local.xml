@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!--로그 파일 저장 위치-->
+    <property name="LOGS_PATH" value="logs"/>
+
+    <property name="LOG_FORMAT" value="[logback] %d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+
+    <!-- Console appender -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${LOG_FORMAT}</Pattern>
+        </layout>
+    </appender>
+    <logger name="com.cj.logistics" level="debug"/>
+
+    <logger name="jdbc" level="debug"/>
+    <logger name="jdbc.sqlonly" level="debug"/>
+    <logger name="jdbc.sqltiming" level="debug"/>
+    <logger name="jdbc.audit" level="off"/>
+    <logger name="jdbc.resultset" level="debug"/>
+    <logger name="jdbc.resultsettable" level="info"/>
+    <logger name="jdbc.connection" level="info"/>
+
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
