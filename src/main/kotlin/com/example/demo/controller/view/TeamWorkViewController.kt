@@ -46,7 +46,7 @@ class TeamWorkViewController(private val admService: AdmService) {
             sqlParam["offset"] = param["offset"] //
 
 //            val admList: List<HashMap<String, Any>> = adminService.selectTmAdmList(sqlParam) //관리자 목록
-            val admList: List<TmAdmDto> = admService.getAll() //관리자 목록
+            val admList: List<TmAdmDto> = admService.selectTmAdm() //관리자 목록
             mav.addObject("result", admList)
         }
 

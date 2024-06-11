@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.mapper.AdmMapper">
+
+    <!-- 관리자 조회 -->
+    <select id="selectTmAdm"  resultType="int">
+        SELECT
+        count(*) as admId
+        from tm_adm
+    </select>
+
+<!--    <select id="selectTmAdm" parameterType="com.example.demo.dto.TmAdmDto" resultType="com.example.demo.dto.TmAdmDto">-->
+<!--        SELECT-->
+<!--        ROW_NUMBER() OVER (ORDER BY A.ADM_ID DESC) AS rowNum-->
+<!--        ,COUNT(*) OVER () AS totalCount-->
+<!--        ,A.ADM_ID AS admId-->
+<!--        ,A.AUTH_CD AS authCd-->
+<!--        ,B.CD_NM AS authNm-->
+<!--        ,A.ID AS id-->
+<!--        ,DAMO.DEC_B64('KEY1', A.PW)  AS pw-->
+<!--        ,A.PW_ERR_CNT AS pwErrCnt-->
+<!--        ,DAMO.DEC_B64('KEY1',A.NAME) AS name-->
+<!--        ,A.EMP_NO AS empNo-->
+<!--        ,DAMO.DEC_B64('KEY1', A.EMAIL) AS email-->
+<!--        ,A.USE_YN AS useYn-->
+<!--        ,CASE WHEN A.USE_YN = 'Y' THEN '사용' ELSE '미사용' END AS useYnName-->
+<!--        ,A.DEL_YN AS delYn-->
+<!--        ,A.REG_ADM_ID AS regAdmId-->
+<!--        ,DATE_FORMAT(A.REG_DT, '%Y.%m.%d') AS regDt-->
+<!--        ,A.UPT_ADM_ID AS uptAdmId-->
+<!--        ,DATE_FORMAT(A.UPT_DT, '%Y%m%d%H%i%s') AS uptDt-->
+<!--        FROM TM_ADM A LEFT JOIN TM_CODE B ON A.AUTH_CD = B.CD AND B.GROUP_CD ='ADM00'-->
+<!--        WHERE 1=1-->
+<!--        <if test="id != NULL and !id.equals('')">-->
+<!--            AND ID = #{id}-->
+<!--        </if>-->
+<!--        <if test="empNo != NULL and !empNo.equals('')">-->
+<!--            AND EMP_NO = #{empNo}-->
+<!--        </if>-->
+<!--        <if test="name != NULL and !name.equals('')">-->
+<!--            AND DAMO.DEC_B64('KEY1' ,NAME) = #{name}-->
+<!--        </if>-->
+<!--        <if test="authCd != NULL and !authCd.equals('')">-->
+<!--            AND AUTH_CD = #{authCd}-->
+<!--        </if>-->
+<!--        ORDER BY ADM_ID DESC-->
+<!--        LIMIT #{limit}-->
+<!--        OFFSET #{offset}-->
+<!--    </select>-->
+
+
+
+
+</mapper>

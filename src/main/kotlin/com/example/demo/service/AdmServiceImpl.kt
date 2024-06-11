@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service
 class AdmServiceImpl (
     private val admMapper: AdmMapper
 ) : AdmService{
-    override fun getAll(): List<TmAdmDto> {
-        return admMapper.findAll()
+
+    override fun selectTmAdm(): List<TmAdmDto> {
+        return admMapper.selectTmAdm()
     }
 }

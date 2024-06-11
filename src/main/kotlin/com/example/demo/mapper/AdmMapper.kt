@@ -2,9 +2,10 @@ package com.example.demo.mapper
 
 import com.example.demo.dto.TmAdmDto
 import org.apache.ibatis.annotations.Mapper
+import org.springframework.stereotype.Repository
 
+@Repository
 @Mapper
 interface AdmMapper {
-
-    fun findAll(): List<TmAdmDto>
+    fun selectTmAdm(): List<TmAdmDto>
 }
