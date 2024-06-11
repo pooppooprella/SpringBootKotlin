@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/adminView")
+@RequestMapping("/view")
 class TeamWorkViewController(private val admService: AdmService) {
 
     @RequestMapping(value = ["/team"])
@@ -28,6 +28,7 @@ class TeamWorkViewController(private val admService: AdmService) {
 
     //관리자 목록 검색
     @PostMapping("/account-system-search")
+//    @Operation(summary = "댓글 생성", description = "[sampleId: 댓글 작성할 게시글 아이디], [body: 댓글내용,댓글수정자아이디]")
     fun accountSystemSearch(
         @RequestParam param: HashMap<String?, Any?>,
         @AuthenticationPrincipal sessionData: SessionData?
