@@ -20,6 +20,7 @@ spring:
       max-lifetime: 2000000
       connection-timeout: 30000
 
+
 #Failed type 1
 #spring:
 #  datasource:
