@@ -1,0 +1,20 @@
+### 댓글 생성 API
+POST /localhost:8080/team/posts
+Content-Type: application/json
+
+{
+  "createdBy": "댓글 작성자"
+}
+
+### 댓글 수정 API
+#PUT /localhost:8080/comment/1
+#Content-Type: application/json
+#
+#{
+#  "content": "댓글 수정",
+#  "updatedBy": "댓글 작성자"
+#}
+
+### 댓글 삭제 API
+#DELETE /localhost:8080/comment/1?deletedBy=댓글삭제자
+

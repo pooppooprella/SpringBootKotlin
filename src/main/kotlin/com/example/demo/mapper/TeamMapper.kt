@@ -1,11 +1,11 @@
 package com.example.demo.mapper
 
-import com.example.demo.dto.TmAdmDto
+import com.example.demo.dto.TeamDto
 import org.apache.ibatis.annotations.Mapper
 import org.springframework.stereotype.Repository
 
 @Repository
 @Mapper
-interface AdmMapper {
-    fun selectTmAdm(): List<TmAdmDto>
+interface TeamMapper {
+    fun selectTmAdm(): List<TeamDto>
 }

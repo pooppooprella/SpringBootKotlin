@@ -1,8 +1,8 @@
 package com.example.demo.controller.view
 
 import com.example.demo.dto.SessionData
-import com.example.demo.dto.TmAdmDto
-import com.example.demo.service.AdmService
+import com.example.demo.dto.TeamDto
+import com.example.demo.service.TeamService
 import groovy.util.logging.Slf4j
 import jakarta.servlet.http.HttpServletRequest
 import lombok.RequiredArgsConstructor
@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/view")
-class TeamWorkViewController(private val admService: AdmService) {
+class TeamWorkViewController(private val teamService: TeamService) {
 
     @RequestMapping(value = ["/team"])
     fun teamWorkView(request: HttpServletRequest): ModelAndView {
@@ -47,7 +47,7 @@ class TeamWorkViewController(private val admService: AdmService) {
             sqlParam["offset"] = param["offset"] //
 
 //            val admList: List<HashMap<String, Any>> = adminService.selectTmAdmList(sqlParam) //관리자 목록
-            val admList: List<TmAdmDto> = admService.selectTmAdm() //관리자 목록
+            val admList: List<TeamDto> = teamService.selectTmAdm() //관리자 목록
             mav.addObject("result", admList)
         }
 
