@@ -21,14 +21,14 @@ class TeamWorkApiController(private val teamService: TeamService) {
 
     /**
      * SELECT
-     * @param name String
+     * @param teamDto : TeamDto 검색 dto 변경예정.
      * @return String
      */
-    @PostMapping("/posts")
-    @Operation(summary = "팀조회 ", description = "[createdBy=생성자]")
-    fun postRequboard(@RequestBody teamDto: TeamDto): Long {
-        println("tags ${teamDto}")
-        println("tmadm ${teamService.selectTmAdm()}")
+    @PostMapping("/team")
+    @Operation(summary = "팀 목록 조회 ", description = "[파라미터설명필요]")
+    fun postReqboard(@RequestBody teamDto: TeamDto): Long {
+        println("teamDto : ${teamDto}")
+        println("selectTeamList :  ${teamService.selectTeamList()}")
         return 1
     }
 
@@ -37,11 +37,10 @@ class TeamWorkApiController(private val teamService: TeamService) {
      * @param name String
      * @return String
      */
-    @PutMapping("/posts")
+    @PutMapping("/team")
     @Operation(summary = "팀 등록", description = "[createdBy=생성자]")
     fun insertBoard(@RequestBody teamDto: TeamDto): Long {
         println("tags ${teamDto}")
-
         return 1
     }
 

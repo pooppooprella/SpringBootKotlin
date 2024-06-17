@@ -9,7 +9,7 @@ class TeamServiceImpl (
     private val teamMapper: TeamMapper
 ) : TeamService{
 
-    override fun selectTmAdm(): List<TeamDto> {
-        return teamMapper.selectTmAdm()
+    override fun selectTeamList(): List<TeamDto> {
+        return teamMapper.selectTeamList()
     }
 }

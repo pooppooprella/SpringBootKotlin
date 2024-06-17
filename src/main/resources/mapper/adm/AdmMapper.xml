@@ -3,14 +3,14 @@
 
 <mapper namespace="com.example.demo.mapper.TeamMapper">
 
-    <!-- 관리자 조회 -->
+
 <!--    <select id="selectTmAdm"  resultType="int">-->
 <!--        SELECT-->
 <!--        count(*) as admId-->
 <!--        from tm_adm-->
 <!--    </select>-->
 
-    <select id="selectTmAdm" parameterType="com.example.demo.dto.TeamDto" resultType="com.example.demo.dto.TeamDto">
+    <select id="selectTeamList" parameterType="com.example.demo.dto.TeamDto" resultType="com.example.demo.dto.TeamDto">
         SELECT
         ROW_NUMBER() OVER (ORDER BY A.ADM_ID DESC) AS rowNum
         ,COUNT(*) OVER () AS totalCount

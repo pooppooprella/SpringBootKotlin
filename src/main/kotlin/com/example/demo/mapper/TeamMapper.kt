@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository
 @Repository
 @Mapper
 interface TeamMapper {
-    fun selectTmAdm(): List<TeamDto>
+    fun selectTeamList(): List<TeamDto>
 }
