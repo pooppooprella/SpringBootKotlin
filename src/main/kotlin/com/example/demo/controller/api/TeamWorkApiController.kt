@@ -5,6 +5,7 @@ import com.example.demo.service.TeamService
 import groovy.util.logging.Slf4j
 import io.swagger.v3.oas.annotations.Operation
 import lombok.RequiredArgsConstructor
+import org.springframework.web.bind.annotation.DeleteMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -40,6 +41,18 @@ class TeamWorkApiController(private val teamService: TeamService) {
     @PutMapping("/team")
     @Operation(summary = "팀 등록", description = "[createdBy=생성자]")
     fun insertBoard(@RequestBody teamDto: TeamDto): Long {
+        println("tags ${teamDto}")
+        return 1
+    }
+
+    /**
+     * DELETE
+     * @param name String
+     * @return String
+     */
+    @DeleteMapping("/team")
+    @Operation(summary = "팀 삭제", description = "[id=삭제요청자]")
+    fun deleteBoard(@RequestBody teamDto: TeamDto): Long {
         println("tags ${teamDto}")
         return 1
     }

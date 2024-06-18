@@ -6,7 +6,7 @@
 
 <!--    <select id="selectTmAdm"  resultType="int">-->
 <!--        SELECT-->
-<!--        count(*) as admId-->
+<!--        count(*) as admSeq-->
 <!--        from tm_adm-->
 <!--    </select>-->
 
@@ -14,7 +14,7 @@
         SELECT
         ROW_NUMBER() OVER (ORDER BY A.ADM_ID DESC) AS rowNum
         ,COUNT(*) OVER () AS totalCount
-        ,A.ADM_ID AS admId
+        ,A.ADM_ID AS admSeq
         ,A.AUTH_CD AS authCd
         ,B.CD_NM AS authNm
         ,A.ID AS id
@@ -26,9 +26,9 @@
         ,A.USE_YN AS useYn
         ,CASE WHEN A.USE_YN = 'Y' THEN '사용' ELSE '미사용' END AS useYnName
         ,A.DEL_YN AS delYn
-        ,A.REG_ADM_ID AS regAdmId
+        ,A.REG_ADM_ID AS regAdmSeq
         ,DATE_FORMAT(A.REG_DT, '%Y.%m.%d') AS regDt
-        ,A.UPT_ADM_ID AS uptAdmId
+        ,A.UPT_ADM_ID AS uptAdmSeq
         ,DATE_FORMAT(A.UPT_DT, '%Y%m%d%H%i%s') AS uptDt
         FROM TM_ADM A LEFT JOIN TM_CODE B ON A.AUTH_CD = B.CD AND B.GROUP_CD ='ADM00'
         WHERE 1=1
@@ -39,7 +39,7 @@
 <!--        SELECT-->
 <!--        ROW_NUMBER() OVER (ORDER BY A.ADM_ID DESC) AS rowNum-->
 <!--        ,COUNT(*) OVER () AS totalCount-->
-<!--        ,A.ADM_ID AS admId-->
+<!--        ,A.ADM_ID AS admSeq-->
 <!--        ,A.AUTH_CD AS authCd-->
 <!--        ,B.CD_NM AS authNm-->
 <!--        ,A.ID AS id-->
@@ -51,9 +51,9 @@
 <!--        ,A.USE_YN AS useYn-->
 <!--        ,CASE WHEN A.USE_YN = 'Y' THEN '사용' ELSE '미사용' END AS useYnName-->
 <!--        ,A.DEL_YN AS delYn-->
-<!--        ,A.REG_ADM_ID AS regAdmId-->
+<!--        ,A.REG_ADM_ID AS regAdmSeq-->
 <!--        ,DATE_FORMAT(A.REG_DT, '%Y.%m.%d') AS regDt-->
-<!--        ,A.UPT_ADM_ID AS uptAdmId-->
+<!--        ,A.UPT_ADM_ID AS uptAdmSeq-->
 <!--        ,DATE_FORMAT(A.UPT_DT, '%Y%m%d%H%i%s') AS uptDt-->
 <!--        FROM TM_ADM A LEFT JOIN TM_CODE B ON A.AUTH_CD = B.CD AND B.GROUP_CD ='ADM00'-->
 <!--        WHERE 1=1-->

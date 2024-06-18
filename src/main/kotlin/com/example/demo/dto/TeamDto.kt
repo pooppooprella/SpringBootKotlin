@@ -5,7 +5,7 @@ import lombok.Data
 /** 관리자계정기본 */
 @Data
 data class TeamDto(
-    private var admId: Int,
+    private var admSeq: Int,
     private val authCd: String,
     private val id: String,
     private val pw: String,
@@ -15,9 +15,9 @@ data class TeamDto(
     private val email: String,
     private val useYn: String,
     private val delYn: String,
-    private val regAdmId: String,
+    private val regAdmSeq: String,
     private val regDt: String,
-    private val uptAdmId: String,
+    private val uptAdmSeq: String,
     private val uptDt: String,
 )
     
